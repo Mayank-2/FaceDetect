@@ -1,0 +1,86 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Dash{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dash.css' %}">
+
+<div class="container my-4">
+    <div class="row">
+        <div class="col-8">
+            <div class="row mx-2 py-5">
+                <div class="col-4 mx-5">
+                    <div class="card" style="width: 18rem; background: linear-gradient(to right, #ef7d8c, #ffdde1);border: none;">
+                        <div class="card-body">
+                            <h5 class="card-title">Today's</h5>
+                            <p class="card-text">Total Attendance</p>
+                            <h1>{{Attendance}}</h1>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-4 mx-4">
+                    <div class="card" style="width: 18rem;  background: linear-gradient(to right, #41b3fa, #f75d74); border: none;">
+                        <div class="card-body">
+                            <h5 class="card-title">Today's</h5>
+                            <p class="card-text">Total Number Of Students</p>
+                            <h1>{{Student}}</h1>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row mx-2 py-5">
+                <div class="col-4 mx-5">
+                    <div class="card" style="width: 18rem; background: linear-gradient(to right, #bdc3c7, #2c3e50);border: none;">
+                        <div class="card-body">
+                            <h5 class="card-title">The Average of </h5>
+                            <p class="card-text">Last Week Attendance is </p>
+                            <h3>{{lastseven}} %</h3>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width:{{lastseven}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 mx-4">
+                    <div class="card" style="width: 18rem; background: linear-gradient(to right, #bdc3c7, #2c3e50);border: none;">
+                        <div class="card-body">
+                            <h5 class="card-title">The Average of</h5>
+                            <p class="card-text">Last Month Attendance is </p>
+                            <h3>{{lastmonth}} %</h3>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width:{{lastmonth}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-4 border border-secondary">
+            <div class="row justify-content-center ">Today's Attendance</div>
+            <div class="px-3 mb-2 scroll ">
+                {% if data  %}
+                
+                    {% for data in data %}
+                        <div class="row my-3">
+                            <div class="col-3"><img src="{% static '/img/person.png' %}" class="img-circle" width="60px"
+                                    height="60px"></img></div>
+                            <div class="col-3">{{data.name}}-{{data.enrollment}}</div>
+
+
+                        </div>
+                        
+                    {% endfor %}
+                {% else %}
+                    <div class="nodata">
+                        <p>~ currently no attendance today ~</p>
+                    </div>
+
+                {% endif %}
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

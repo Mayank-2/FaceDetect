@@ -1,0 +1,13 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Dash{% endblock %}
+{% block content %}
+<div class="container pd-4">
+    <div class="alert alert-warning mt-5  text-center" role="alert">
+        <h4 class="alert-heading">Alert!</h4>
+        <hr>
+        <p>Something went wrong , {{error}}</p>
+    
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Record{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/record.css' %}">
+
+<div class="container py-3">
+
+    <div class="d-flex justify-content-end">
+        <!-- <div class="p-1">
+            <a href="{% url 'addstu' %}"><button type="button" class="btn btn-primary">ADD Students</button></a>
+        </div> -->
+        <div class="p-1">
+            <a href="{% url 'showAttend' %}"><button type="button" class="btn btn-primary">Show Attendance</button></a>
+        </div>
+
+        <div class="p-1">
+            <a href="{% url 'StudDrop' %}" class="btn btn-success" >Show Students</a>
+        </div>
+    </div>
+    <div class="row my-3">
+        {% block StuRecord %}
+
+        {% endblock %}
+    </div>
+
+    
+</div>
+<!-- ############################################## -->
+{% block record %}
+
+{% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+    crossorigin="anonymous"></script>
+
+
+{% endblock %}

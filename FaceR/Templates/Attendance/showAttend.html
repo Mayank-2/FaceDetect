@@ -1,0 +1,55 @@
+{% extends 'app/record.html' %}
+{% load static %}
+{% block title %}StuRecord{% endblock %}
+{% block StuRecord %}
+{% if showAttend %}
+<div class="div" align="right">
+    <button class="btn btn-default border border-dark" onclick="printDiv('printableArea')"><i class="fa fa-print"
+            style="font-size:25px;color:rgb(18, 15, 230)"></i></button>
+</div>
+<div class="row my-2" id="printableArea">
+    <div class="table-responsive-xl">
+        <table class="table table-bordered" style="text-align:center">
+            <thead>
+                <tr class="success">
+                    <th scope="col">Name</th>
+                    <th scope="col">Branch</th>
+                    <th scope="col">Enrollment No.</th>
+                    <th scope="col">Attendance Date & Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in showAttend %}
+                <tr>
+                    <td>{{data.name}}</td>
+                    <td>{{data.branch}}</td>
+                    <td>{{data.enrollment}}</td>
+                    <td>{{data.attendance_date}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% else %}
+<div class="alert alert-warning mt-5 text-center" role="alert">
+    <h4 class="alert-heading">Alert!</h4>
+    <hr>
+    <p>There is no record of what you are trying to retrieve,Fill the correct information and try again..</p>
+
+</div>
+{% endif %}
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>
+{% endblock %}

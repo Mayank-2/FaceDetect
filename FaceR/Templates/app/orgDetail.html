@@ -1,0 +1,83 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}OrgDetails{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/Organization.css' %}">
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong></strong>{{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+{% if data %}
+<section class="h-100 gradient-custom-2 py-5 my-5">
+    <div class="container py-5 h-100">
+        <!-- <h6 class="text-secondary fw-bold"> ~ Login for Head of Department</h6> -->
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-lg-9 col-xl-7">
+                <div class="card">
+
+                    <div class="card-body p-4 text-black">
+                        <div class="mb-5">
+                            <p class="lead fw-normal mb-1">Organization</p>
+                            <div class="p-4" style="background-color: #e0e1e2;">
+                                {% for data in data %}
+                                <p class="font-italic mb-1">{{data.name}}</p>
+                                <p class="font-italic mb-1">{{data.email}}</p>
+                                <p class="font-italic mb-1">{{data.contact}}</p>
+                                <p class="font-italic mb-0">{{data.address}}</p>
+                                <p class="font-italic mb-0">{{data.city}}-{{data.postalcode}}({{data.state}})</p>
+
+                                {% endfor %}
+                            </div>
+                            <button class="btn btn-danger mt-2"><a href="{% url 'logout' %}"  style="text-decoration: none; color :#f8f9fa">Logout</a></button>
+
+                        </div>
+
+
+                        <!-- <div class="row g-2">
+                            <div class="col mb-2">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
+                                    alt="image 1" class="w-100 rounded-3">
+                            </div>
+                            <div class="col mb-2">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(107).webp"
+                                    alt="image 1" class="w-100 rounded-3">
+                            </div>
+                        </div> -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% else %}
+<div class="container py-2">
+    <div class="row my-2">
+        <div class="col-sm-6 offset-sm-3 ok">
+            <h6 class="text-secondary fw-bold"> ~ Enter Organization Details</h6>
+            <!-- <hr> -->
+            <button class="border-0 bg-transparent" style='font-size:20px' onclick="history.back()"><i class='fas fa-arrow-left'></i></button>
+            <form method="post" novalidate class="shadow p-4  rounded" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for fm in form %}
+                <div class="form-group mb-3">
+                    {{fm.label_tag}} {{fm}} <small>{{fm.errors|striptags}}</small>
+                </div>
+                {% endfor %}
+                <input type="submit" value="Submit" class="btn btn-outline-success" style="margin:auto">
+                <br>
+
+
+
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Branch{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/record.css' %}">
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong></strong>{{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+<div class="container py-3">
+
+    <div class="d-flex justify-content-end">
+        <div class="p-1">
+            <a href="{% url 'addstu' %}"><button type="button" class="btn btn-primary">ADD Students</button></a>
+        </div>
+        <div class="p-1">
+            <a href="{% url 'showAttend' %}"><button type="button" class="btn btn-primary">Show Attendance</button></a>
+        </div>
+
+    
+
+
+            <!-- <div class="dropdown-menu my-4 mx-3" aria-labelledby="dropdownMenuButton">
+                <form method="post" class="px-4 py-3">
+                    {% csrf_token %}
+                    {% for fm in stuform %}
+                    <div class="form-group mb-3">
+                        {{fm.label_tag}} {{fm}} <small>{{fm.errors|striptags}}</small>
+                    </div>
+                    {% endfor %}
+                    <input type="submit" value="Submit" class="btn btn-primary">
+                    <br>
+                </form>
+            </div> -->
+        </div>
+    </div>
+    <div class="row my-3">
+        {% block StuRecord %}
+
+        {% endblock %}
+    </div>
+
+    
+</div>
+<!-- ############################################## -->
+{% block record %}
+
+{% endblock %}
+
+{% endblock %}

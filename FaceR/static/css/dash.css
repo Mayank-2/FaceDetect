@@ -1,0 +1,53 @@
+::-webkit-scrollbar {
+    width: 10px;
+    overflow-x: hidden;
+    /* Hide horizontal scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #eee;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.scroll {
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    height: 600px;
+
+    /* background-image: url("/static/img/blurry.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover; */
+    
+    
+}
+
+.card {
+    transition: transform .2s;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.card:hover {
+    -ms-transform: scale(1.1);
+    /* IE 9 */
+    -webkit-transform: scale(1.1);
+    /* Safari 3-8 */
+    transform: scale(1.1);
+}
+.nodata{
+    margin-top: 17rem;
+    text-align: center;
+    font-weight: bold;
+}

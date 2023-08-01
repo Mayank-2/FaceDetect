@@ -1,0 +1,46 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<link href="{% static 'css/login.css' %}" rel="stylesheet">
+
+{% if form.errors %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    Your username and password didn't match. Please try again.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+<section class="pt-5">
+    <div class="container pt-5">
+        <div class="container py-5 ">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form method="post" class="rounded" >
+                        {% csrf_token %}
+                        <div class="container">
+                            {% for fm in form %}
+                            <div class="form-group mb-3">
+                                {{fm.label_tag}} {{fm}} <small>{{fm.errors|striptags}}</small>
+                            </div>
+                            {% endfor %}
+                            <button type="submit" class="login_bt">Login</button>
+                            <label>
+                                <input type="checkbox" checked="checked" name="remember"> Remember me
+                            </label>
+                        </div>
+                    </form>
+                    <div class="text-center text-dark fw-bold">
+                        Or 
+                    </div>
+                    <div class="container py-0">
+                        <div class="text-center text-dark fw-bold">
+                            <a class="text-success fw-bold " href="{% url 'signup' %} "
+                                style="text-decoration: none;">Create an Account</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

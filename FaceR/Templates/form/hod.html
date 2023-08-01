@@ -1,0 +1,63 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Dash{% endblock %}
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong></strong>{{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+<div class="container py-5">
+    <div class="row my-2">
+        <div class="col-sm-6 offset-sm-3 ok">
+            <h6 class="text-secondary fw-bold"> ~ Create account for Head of Department</h6>
+            <hr>
+            <button class="border-0 bg-transparent" style='font-size:20px' onclick="history.back()"><i class='fas fa-arrow-left'></i></button>
+            <form method="post" novalidate class="shadow p-5  rounded" onSubmit = "return checkPassword(this)" id="frm">
+                {% csrf_token %}
+                {% for fm in form %}
+                <div class="form-group mb-3">
+                    {{fm.label_tag}} {{fm}} <small>{{fm.errors|striptags}}</small>
+                </div>
+                {% endfor %}
+                <input type="submit" value="Signup" class="btn btn-success">
+                <br>
+
+                <div class="text-center text-primary fw-bold">Already have an account ? <a class="text-success fw-bold a2"
+                        href="{% url 'HODLogin' %}">Login</a></div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+<script>
+    function checkPassword(form) {
+        password1 = form.passwd.value;
+        password2 = form.passwdd_.value;
+
+        // If password not entered
+        if (password1 == '')
+            document.getElementById("id_passwd").style.borderColor = "red";
+              
+        // If confirm password not entered
+        else if (password2 == '')
+            document.getElementById("id_passwd").style.borderColor = "red";
+              
+        // If Not same return False.    
+        else if (password1 != password2) {
+            document.getElementById("id_passwd").style.borderColor = "red";
+            
+            return false;
+        }
+
+        // If same return True.
+        else{
+            return true;
+        }
+    }
+</script>
+{% endblock %}

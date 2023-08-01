@@ -1,0 +1,61 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}HOD Login{% endblock %}
+{% block content %}
+
+<div class="container py-5">
+    <div class="row my-2">
+        <div class="col-sm-6 offset-sm-3 ok">
+            <h6 class="text-secondary fw-bold"> ~ Login for Head of Department</h6>
+            <hr>
+            <button class="border-0 bg-transparent" style='font-size:20px' onclick="history.back()"><i class='fas fa-arrow-left'></i></button>
+            <form method="post" novalidate class="shadow p-5  rounded" onSubmit = "return check(this)" id="frm">
+                {% csrf_token %}
+                {% for fm in form %}
+                <div class="form-group mb-3">
+                    {{fm.label_tag}} {{fm}} <small>{{fm.errors|striptags}}</small>
+                </div>
+                {% endfor %}
+                <input type="submit" value="Login" class="btn btn-success">
+                <br>
+
+                <div class="text-center text-primary fw-bold">Create an account ? <a class="text-success fw-bold a2"
+                        href="{% url 'hod' %}">Create</a></div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+<script>
+    function check(form) {
+        name = form.name.value;
+        branch = form.branch.value;
+        password = form.password.value;
+        
+
+        // If password not entered
+        if (name == ''){
+            document.getElementById("id_name").style.borderColor = "red";
+            return false;
+        }  
+        // If confirm password not entered
+        else if (branch == ''){
+            document.getElementById("id_branch").style.borderColor = "red";
+            return false;
+        }
+        // If Not same return False.    
+        else if (password == '') {
+            document.getElementById("id_password").style.borderColor = "red";
+            
+            return false;
+        }
+
+        // If same return True.
+        else{
+            return true;
+        }
+    }
+</script>
+
+{% endblock %}
